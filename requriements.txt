@@ -1,6 +1,0 @@
-torch
-torchvision
-pytest
-pytest-cov
-pyyaml
-tensorboard

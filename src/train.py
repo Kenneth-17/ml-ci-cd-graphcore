@@ -3,10 +3,10 @@ import torch
 import torch.optim as optim
 import torch.nn as nn
 from torchvision import datasets, transforms
-from model import SimpleCNN
+from src.model import SimpleCNN
 
 def train_model(epochs=10, batch_size=64, learning_rate=0.001):
-    device = torch.device("ipu" if torch.has_ipu else "cpu")  # Modify based on Poplar setup
+    device = torch.device("ipu" if hasattr(torch, "has_ipu") and torch.has_ipu else "cpu")
 
     transform = transforms.Compose([
         transforms.ToTensor(),
