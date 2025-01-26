@@ -1,0 +1,39 @@
+# .github/workflows/ci.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Install Poplar SDK
+      run: |
+        # Download and install Poplar SDK
+        # This requires access to Graphcore's repository, which may need secrets
+        # Placeholder for Poplar SDK installation
+        echo "Poplar SDK installation steps go here"
+      env:
+        POPLAR_VERSION: "latest"
+
+    - name: Run Tests
+      run: |
+        pytest tests/ --cov=src
